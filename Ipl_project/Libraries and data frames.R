@@ -10,13 +10,13 @@ library(tidyverse)
 library(readxl)
 
 ## Load  deliveries dataset
-deliveries <- read_excel("D:/R projects/datasets/deliveries.xlsx")
+deliveries <- read_excel("D:/R_projects/datasets/deliveries.xlsx")
 
 ## Load ipl ball by ball dataset dataset
-IPL.Ball.by.Ball.2008.2020 <- read.csv("D:/R projects/ipl teams/IPL Ball-by-Ball 2008-2020.csv")
+IPL.Ball.by.Ball.2008.2020 <- read.csv("D:/R_projects/ipl_teams/IPL Ball-by-Ball 2008-2020.csv")
 
 ## Load ipl matches dataset
-IPL.Matches.2008.2020 <- read.csv("D:/R projects/ipl teams/IPL Matches 2008-2020.csv")
+IPL.Matches.2008.2020 <- read.csv("D:/R_projects/ipl_teams/IPL Matches 2008-2020.csv")
 
 # create data frame of deliveries
 df <- data.frame(deliveries) 
@@ -40,7 +40,7 @@ year<- merge_df$date %>% str_sub(1,4)
 
 merge_df<- mutate(merge_df,year)
 
-df2 <- data.frame(merge_df) 
+#df2 <- data.frame(merge_df) 
 
 merge_df<- merge_df %>%
   select("match_id"=id, inning, over, bowler ,ball,

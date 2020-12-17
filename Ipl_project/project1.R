@@ -8,8 +8,7 @@ team_name <- function(y){
    stop("Enter a valid team name")
     }      
 
-  
-#df <- data.frame(deliveries)    
+
 
 ## Creating an empty data frame with following column names
 over_dt <- data.frame(inning=numeric(),over=numeric() , bowler= character() ,                   
@@ -19,13 +18,13 @@ over_dt <- data.frame(inning=numeric(),over=numeric() , bowler= character() ,
 
 for(x in 1:19){
   
-## bind the empty data set with df and iterate in 'for' loop to take values of over from 1 to 19  
-over_dt <- rbind(over_dt ,df2[df2$over==x, ])         
+## bind the empty data set with merge_df and iterate in 'for' loop to take values of over from 1 to 19  
+over_dt <- rbind(over_dt ,merge_df[merge_df$over==x, ])         
 
 ## group by 'over' and add other required columns
 grouped_dt <-  over_dt %>% 
                 group_by(over) %>%
-                summarise( id, innings=factor(inning,levels = c(1,2)) ,over,
+                summarise( match_id, innings=factor(inning,levels = c(1,2)) ,over,
                 "total_bowls" = n() , bowler , ball ,bowling_team, batsman_runs ,
                 extra_runs , total_runs, batting_team )                          
 
@@ -34,7 +33,7 @@ Team_ipl <- grouped_dt[grouped_dt$batting_team == y ,]
 
 ##   calculating total runs scored per match per over
 over_totalruns <- Team_ipl %>% 
-                    group_by(id, .add = TRUE ) %>%
+                    group_by(match_id, .add = TRUE ) %>%
                      summarise( runs = sum( total_runs)) %>%
                       unique()                                
 
@@ -51,7 +50,7 @@ return(  ggplot(data = mean_total, mapping = aes( x= over, y= avg_runs  ))+
              labs(title = paste(y, "throughout IPL"),              ## Create a ggplot 
             subtitle = "Runs scored Per over/ Run Rate ",
              x= "Overs", y= " Avg Runs",
-             caption = "IPL Data from 2008-2017 "  ) +
+             caption = "IPL Data from 2008-2020 "  ) +
              geom_point(color="red", pch=19 ) +
            theme_bw() )
       
