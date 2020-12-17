@@ -10,9 +10,9 @@ team_name_year <- function(y,start,end=NA){
       b<- start
    }
    
-
 ##Show an error if anything other than team names are provided as argument 
    if( !(y %in% all_teams)) { 
+      print(all_teams)
       stop("Enter a valid team name") }     
    
   if(!(start %in% all_year)){
@@ -74,12 +74,7 @@ team_name_year <- function(y,start,end=NA){
                     caption = paste("IPL data of ",start,"to",end) ) +
                geom_point(color="red", pch=19) +
               theme_bw())  
-            
-            
-                                          
-            
-   
 
 }
 
-team_name_year(y="Mumbai Indians", start = "2008", end= "2017" )
+team_name_year(y="mumbai Indians", start = "2008", end= "2017" )
